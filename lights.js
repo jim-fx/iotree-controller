@@ -89,11 +89,15 @@ function morse(s) {
     "_": 2000,
   }
 
-  const times = message.split(" ").map(t => lib[t]);
+  const times = message.split(" ").map(t => lib[t]).filter(s => !!s);
+
+  const duration = times.reduce((a, b) => a + b);
+
+  console.log(duration, times);
 
   nextMorse(times)
 
-  return times.reduce((a, b) => a + b);
+  return duration;
 
 }
 
