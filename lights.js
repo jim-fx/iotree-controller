@@ -69,11 +69,13 @@ function nextMorse(arr) {
   if (!arr.length) return;
 
   changeLight(setStarColor(255, 0, 0));
+  changeLight(setColor(255, 0, 0));
 
   const time = arr.shift();
 
   setTimeout(() => {
-    changeLight(setStarOff())
+    changeLight(setStarOff());
+    changeLight(setOff());
     setTimeout(() => {
       nextMorse(arr);
     }, time)
