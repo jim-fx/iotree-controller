@@ -70,15 +70,17 @@ function nextMorse(arr) {
 
   changeLight(setStarColor(255, 0, 0));
   changeLight(setColor(255, 0, 0));
+  changeLight(setBackgroundState(true));
 
   const time = arr.shift();
 
   setTimeout(() => {
     changeLight(setStarOff());
     changeLight(setOff());
+    changeLight(setBackgroundState(false));
     setTimeout(() => {
       nextMorse(arr);
-    }, time)
+    }, 400)
   }, time);
 
 }
