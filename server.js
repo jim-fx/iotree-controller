@@ -14,7 +14,6 @@ app.get('/beemovie', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      console.lof()
       lights.morse(data)
       res.send(data);
     }

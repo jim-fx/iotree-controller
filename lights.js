@@ -50,8 +50,7 @@ const funcs = [
 ]
 
 async function changeLight(body) {
-  console.log(body);
-  const res = await fetch('https://lwivs39.gm.fh-koeln.de/mqtt', {
+  fetch('https://lwivs39.gm.fh-koeln.de/mqtt', {
     method: 'POST',
     headers: {
       'mode': 'no-cors',
@@ -60,7 +59,9 @@ async function changeLight(body) {
       'Content-Type': 'application/json',
     },
     body: body,
-  });
+  }).catch(err => {
+    console.error(err);
+  })
 }
 
 function nextMorse(arr) {
