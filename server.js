@@ -3,7 +3,7 @@ const request = require('request');
 const cors = require('cors');
 const app = express();
 const fs = require("fs");
-const port = 8080;
+const { PORT = 8080 } = process.env;
 
 const lights = require("./lights");
 
@@ -48,10 +48,10 @@ app.get('/bg/:state', function (req, res) {
 app.use("/", express.static(__dirname + "/static"));
 
 //Start the server by listening on a port
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log("+---------------------------------------+");
   console.log("|                                       |");
-  console.log(`|  [\x1b[34mSERVER\x1b[37m] Listening on port: \x1b[36m${port} 🤖  \x1b[37m |`);
+  console.log(`|  [\x1b[34mSERVER\x1b[37m] Listening on port: \x1b[36m${PORT} 🤖  \x1b[37m |`);
   console.log("|                                       |");
   console.log("\x1b[37m+---------------------------------------+");
 });
