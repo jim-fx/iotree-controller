@@ -5,12 +5,14 @@ const m = new MorseCode();
 
 const randomBoolean = () => Math.random() > 0.5;
 
+const randomInt = () => Math.floor(Math.random() * 255);
+
 const setBackgroundState = (state = randomBoolean()) => JSON.stringify({
   topic: "IoTree/Relay1",
   message: state ? "on" : "off",
 })
 
-const setColor = (r, g, b) => JSON.stringify({
+const setColor = (r = randomInt(), g = randomInt(), b = randomInt()) => JSON.stringify({
   topic: "IoTree/Leds",
   message: `${r}, ${g}, ${b}`,
 })
@@ -20,7 +22,7 @@ const setOff = () => JSON.stringify({
   message: `color-wipe`,
 })
 
-const setStarColor = (r, g, b) => JSON.stringify({
+const setStarColor = (r = Math.random() * 255, g = Math.random() * 255, b = Math.random() * 255) => JSON.stringify({
   topic: "IoTree/Star/Light",
   message: `${r}, ${g}, ${b}`,
 })
@@ -33,23 +35,24 @@ const setStarOff = () => JSON.stringify({
 
 const setRandomColor = () =>
   randomBoolean()
-    ? setColor(Math.random() * 255, Math.random() * 255, Math.random() * 255)
+    ? setColor()
     : setOff();
 
 const setRandomStarColor = () =>
   randomBoolean()
-    ? setStarColor(Math.random() * 255, Math.random() * 255, Math.random() * 255)
+    ? setStarColor()
     : setStarOff();
 
 const randomFromArray = arr => arr[Math.floor(Math.random() * arr.length)];
 
 const funcs = [
-  setRandomColor,
-  setRandomStarColor,
-  setBackgroundState,
+  setColor,
+  //setRandomStarColor,
+  //setBackgroundState,
 ]
 
 async function changeLight(body) {
+  console.log(body);
   fetch('https://lwivs39.gm.fh-koeln.de/mqtt', {
     method: 'POST',
     headers: {
@@ -68,7 +71,7 @@ function nextMorse(arr) {
 
   if (!arr.length) return;
 
-  changeLight(setStarColor(255, 0, 255));
+  changeLight(setStarColor());
 
   const time = arr.shift();
 
@@ -93,14 +96,11 @@ function morse(s) {
 
   const duration = times.reduce((a, b) => a + b);
 
-  console.log(duration, times);
-
   nextMorse(times)
 
   return duration;
 
 }
-
 
 
 exports.morse = morse;
