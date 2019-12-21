@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h2>URLS:</h2>
+
+  <ul>
+    <li>
+      GET /beemovie
+      <p>
+        - Sends the beemovie script as morse to the star
+      </p>
+    </li>
+    <li>
+      GET /message/:message
+      <p>
+        - Converts the message and sends it to the star
+      </p>
+    </li>
+    <li>
+      GET /random
+      <p>
+        - Sets all random parameters on the tree
+      </p>
+    </li>
+    <li>
+      GET /star?r&g&b
+      <p>
+        - Sets the rgb on the star
+      </p>
+    </li>
+    <li>
+      GET /light?r&g&b
+      <p>
+        - Sets the rgb on the lights
+      </p>
+    </li>
+    <li>
+      GET /bg/:state
+      <p>
+        - State = "on" or "off", turns the bg light on or off
+      </p>
+    </li>
+  </ul>
+
+  <h2>INFOS:</h2>
+
+  <h3># URLS</h3>
+  /mqtt
+
+
+  <h3># MQTT-TOPICS</h3>
+
+  <h4>IoTree/Leds</h4>
+  <ul>
+    <li>
+      message = "0,0,0", "color-wipe"
+    </li>
+  </ul>
+
+  <h4>IoTree/Star/Light</h4>
+  <ul>
+    <li>
+      message = "0,0,0", "color-wipe"
+    </li>
+  </ul>
+
+  <h4>IoTree/Relay1</h4>
+  <ul>
+    <li>
+      message="on","off"
+    </li>
+  </ul>
+
+</body>
+
+</html>
