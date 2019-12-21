@@ -9,13 +9,19 @@ const lights = require("./lights");
 
 app.use(cors());
 
+function round(ms) {
+  return Math.round(ms * 100) / 100 + "s";
+}
+
+
+
 app.get('/beemovie', function (req, res) {
   fs.readFile(__dirname + "/beemovie.txt", 'utf8', (err, data) => {
     if (err) {
       res.send(err);
     } else {
       const time = lights.morse(data)
-      res.send(time);
+      res.send(round(time));
     }
   })
 });
@@ -27,7 +33,7 @@ app.get('/random', function (req, res) {
 
 app.get('/message/:message', function (req, res) {
   const time = lights.morse(req.params.message);
-  res.send(time);
+  res.text(round(time));
 });
 
 app.get('/star', function (req, res) {
