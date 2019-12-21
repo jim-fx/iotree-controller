@@ -93,6 +93,8 @@ function morse(s) {
 
   nextMorse(times)
 
+  return times.reduce((a, b) => a + b);
+
 }
 
 

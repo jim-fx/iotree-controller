@@ -14,8 +14,8 @@ app.get('/beemovie', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      lights.morse(data)
-      res.send(data);
+      const time = lights.morse(data)
+      res.send(time);
     }
   })
 });
@@ -26,8 +26,8 @@ app.get('/random', function (req, res) {
 });
 
 app.get('/message/:message', function (req, res) {
-  lights.morse(req.params.message);
-  res.send("WORKED");
+  const time = lights.morse(req.params.message);
+  res.send(time);
 });
 
 app.get('/star', function (req, res) {
